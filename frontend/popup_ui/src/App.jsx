@@ -1,13 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Hero from './components/Home/Home.jsx'
+import Home from './components/Home/Home.jsx'
+import MainList from './components/MainList/mainlist.jsx'
 
-function App() {
+export default function App() {
+  const [showMainList, setShowMainList] = useState(false);
+
   return (
-    <Hero />
-  )
+    <>
+      {showMainList ? (
+        <MainList />
+      ) : (
+        <Home onGetStarted={() => setShowMainList(true)} />
+      )}
+    </>
+  );
 }
-
-export default App
