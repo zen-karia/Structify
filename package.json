@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A Modern Chrome Extension that organizes tabs based on various categories and helps to jump to that particular tab in seconds whenever required",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd frontend/popup_ui && npm run build && cd .. && xcopy assets ..\\dist\\assets /E /I /Y && cd .. && copy manifest.json dist\\ && copy backend\\background\\background.js dist\\"
   },
   "repository": {
     "type": "git",
