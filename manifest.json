@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Structify",
+  "version": "1.0.0",
+  "description": "AI-powered Chrome extension to organize and jump to tabs in real time.",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "backend/background/background.js"
+  },
+  "action": {
+    "default_popup": "frontend/popup.html",
+    "default_icon": {
+      "16": "frontend/assets/icon16.png",
+      "32": "frontend/assets/icon32.png",
+      "48": "frontend/assets/icon48.png",
+      "128": "frontend/assets/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "frontend/assets/icon16.png",
+    "32": "frontend/assets/icon32.png",
+    "48": "frontend/assets/icon48.png",
+    "128": "frontend/assets/icon128.png"
+  }
+}
