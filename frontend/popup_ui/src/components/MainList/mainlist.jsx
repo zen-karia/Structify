@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { saveScreenState } from '../../utils/screenState';
 
 export default function MainList({ apiKey}) {
     const [categories, setCategories] = useState({});
@@ -7,7 +8,8 @@ export default function MainList({ apiKey}) {
     const fetchTabs = useCallback(() => {
         chrome.runtime.sendMessage({ type: 'GET_CATEGORIZED_TABS', apiKey}, (response) => {
             if (response && response.categories) {
-                setCategories(response.categories);
+                setCategories(response.categories);                
+                console.log('Categories:', categories);
             } else {
                 setCategories({});
             }
@@ -32,6 +34,16 @@ export default function MainList({ apiKey}) {
 
     return (
         <div className="w-[350px] h-[500px] bg-black text-white p-4 rounded-xl shadow overflow-y-auto">
+            <button
+                className="absolute top-2 right-2 bg-orange-600 text-white px-3 py-1 rounded text-xs font-semibold shadow cursor-pointer active:opacity-70"
+                onClick={() => {
+                    saveScreenState({ screen: 'home', apiKey: null });
+                    window.close();
+                }}
+                title="Close Extension"
+            >
+                Close Extension
+            </button>
             <h2 className='text-xl font-bold mb-4'>Your Tabs</h2>
             {Object.keys(categories).length > 0 ? (
             Object.entries(categories).map(([cat, catTabs]) => (

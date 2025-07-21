@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { saveScreenState } from '../../utils/screenState';
 
 export default function SetApiKey({ onApiKeySubmit }) {
     const [apiKey, setApiKey] = useState('');
@@ -15,6 +16,16 @@ export default function SetApiKey({ onApiKeySubmit }) {
 
     return (
         <div className="w-[350px] h-[225px] flex-col bg-black shadow items-center mb-5">
+            <button
+                className="absolute top-2 right-2 bg-orange-600 text-white px-3 py-1 rounded text-xs font-semibold shadow cursor-pointer active:opacity-70"
+                onClick={() => {
+                    saveScreenState({ screen: 'home', apiKey: null });
+                    window.close();
+                }}
+                title="Close Extension"
+            >
+                Close Extension
+            </button>
             <h2 className="text-xl text-white font-bold mb-2">Enter your OpenAI API Key</h2>
             <input
                 type='text'
