@@ -53,13 +53,11 @@ async function categorizeTabsWithOpenAI(tabs, apiKey) {
                 for (const [cat, indices] of Object.entries(categoriesByIndex)) {
                     categorized[cat] = indices.map(i => tabs[i]).filter(Boolean);
                 }
-                // If categorization is empty or all categories are empty, fallback
                 if (Object.keys(categorized).length === 0 || Object.values(categorized).every(arr => arr.length === 0)) {
                     return { All: tabs };
                 }
                 return categorized;
             } else {
-                // fallback: try line-based categories (not expected, but for robustness)
                 const categories = cleaned.split('\n').map(line => line.trim()).filter(Boolean);
                 const categorized = {};
                 categories.forEach((cat, i) => {
@@ -72,11 +70,9 @@ async function categorizeTabsWithOpenAI(tabs, apiKey) {
                 return categorized;
             }
         } catch (e) {
-            console.error('OpenAI categorization failed:', e, 'Output was:', text);
             return { All: tabs };
         }
     } catch(e) {
-        console.error('OpenAI categorization failed:', e);
         return { All: tabs };
     }
 }
@@ -91,7 +87,7 @@ function buildPrompt(tabs) {
     Format of your response:  
     Return a JSON object, where each key is a category and the value is an array of indices representing which tabs fall into that category.
 
-    Examples of valid categories include (but are not limited to):
+    Examples of valid categories include (BUT ARE NOT LIMITED TO):
     - Work  
     - Social Media  
     - Entertainment  
