@@ -61,7 +61,7 @@ export default function MainList({ apiKey}) {
             </button>
             <h2 className='text-xl font-bold mb-2'>Your Tabs</h2>
             {Object.keys(categories).length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-4 overflow-x-auto">
+                <div className="sticky top-0 z-10 bg-black flex flex-wrap gap-2 mb-4 overflow-x-auto py-2">
                     {Object.keys(categories).map(cat => (
                         <button
                             key={cat}

@@ -15,7 +15,7 @@ export default function SetApiKey({ onApiKeySubmit }) {
     }
 
     return (
-        <div className="w-[350px] h-[225px] flex-col bg-black shadow items-center mb-5">
+        <div className="w-[350px] h-[300px] flex-col bg-black shadow items-center mb-5">
             <button
                 className="absolute top-2 right-2 bg-orange-600 text-white px-3 py-1 rounded text-xs font-semibold shadow cursor-pointer active:opacity-70"
                 onClick={() => {
@@ -46,6 +46,7 @@ export default function SetApiKey({ onApiKeySubmit }) {
                 <li>Paste it above and click Continue</li>
                 </ol>
             </div>
+            <h3 className='text-sm text-white font-bold mb-2 mt-2'>Please Note that if you see an "ALL" Tabs category, it means your free API quota has expired and you need to add payment method for billing.</h3>
         </div>
     );
 }
