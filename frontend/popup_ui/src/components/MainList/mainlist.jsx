@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { saveScreenState } from '../../utils/screenState';
+import Organizing from '../Organizing/Organizing';
 
 export default function MainList({ apiKey}) {
     const [categories, setCategories] = useState({});
     const [active, setActive] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [organizing, setOrganizing] = useState(true);
     const categoryRefs = useRef({});
 
     const fetchTabs = useCallback(() => {
         chrome.runtime.sendMessage({ type: 'GET_CATEGORIZED_TABS', apiKey}, (response) => {
             if (response && response.categories) {
-                setCategories(response.categories);                
-                console.log('Categories:', response.categories);
+                setCategories(response.categories);
             } else {
                 setCategories({});
             }
@@ -45,7 +46,7 @@ export default function MainList({ apiKey}) {
         });
     }, [categories]);
 
-    if (loading) return <div className='text-white'>Loading...</div>
+    if (loading) return <Organizing />
 
     return (
         <div className="w-[350px] h-[500px] bg-black text-white p-4 rounded-xl shadow overflow-y-auto">
