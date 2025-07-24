@@ -6,7 +6,6 @@ export default function MainList({ apiKey}) {
     const [categories, setCategories] = useState({});
     const [active, setActive] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [organizing, setOrganizing] = useState(true);
     const categoryRefs = useRef({});
 
     const fetchTabs = useCallback(() => {
